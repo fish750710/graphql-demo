@@ -1,0 +1,7 @@
+query getReStoreByShortId($shortId: String) {
+  reStoreByShortId(shortId: $shortId) {
+    id
+    name
+    shortId
+  }
+}
