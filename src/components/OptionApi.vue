@@ -16,8 +16,11 @@ import gql from "graphql-tag";
 
 import testGQL from "../apollo/test.gql";
 
+// ref. https://v4.apollo.vuejs.org/api/smart-query.html#options
 export default {
   apollo: {
+    // property 的 name 與 query name 不相同
+    // 就必須要在 update 中指定資料
     valueByApolloOption: {
       query: gql`
         query getReStoreByShortId($shortId: String) {
@@ -35,6 +38,8 @@ export default {
       },
       update(data) {
         console.log(data);
+        // to customize the value that is set in the vue property, for example if the field names don't match.
+        // Assign 值給 valueByApolloOption
         return data.reStoreByShortId;
       },
       skip() {
@@ -42,6 +47,8 @@ export default {
       },
       loadingKey: "loadingCount",
     },
+    // testGQL 中的 query name 也是 reStoreByShortId
+    // 名稱相同會直接 mapping 就不需要
     reStoreByShortId: {
       query: testGQL,
       variables() {
@@ -62,9 +69,11 @@ export default {
   },
   methods: {
     refetch() {
+      // https://apollo.vuejs.org/guide/apollo/queries.html#simple-query
       this.$apollo.queries.valueByApolloOption.refetch();
     },
     async fetch() {
+      // https://apollo.vuejs.org/api/dollar-apollo.html
       const result = await this.$apollo.query({
         query: testGQL,
         variables: {

@@ -16,6 +16,7 @@ import { useQuery, useResult, useQueryLoading } from "@vue/apollo-composable";
 
 import testGQL from "../apollo/test.gql";
 
+// ref. https://v4.apollo.vuejs.org/api/use-query.html
 export default {
   setup() {
     const { result, loading, refetch } = useQuery(testGQL, { shortId: "zzz9999" });

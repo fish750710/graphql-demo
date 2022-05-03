@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding-bottom: 100px;">
     <div>Hello World</div>
     <OptionApi />
     <CompositionApi />
