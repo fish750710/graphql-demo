@@ -20,8 +20,9 @@ import testGQL from "../apollo/test.gql";
 export default {
   setup() {
     const { result, loading, refetch } = useQuery(testGQL, { shortId: "zzz9999" });
+    // console.log("ql->", useQuery(testGQL, { shortId: "zzz9999" }))
     const reStore = useResult(result, null, (data) => data.reStoreByShortId);
-
+    // console.log("res", reStore);
     const queryLoading = useQueryLoading();
 
     return {
